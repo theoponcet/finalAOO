@@ -1,28 +1,27 @@
 package main;
 
-public class Printer {
+public class Printer implements On{
 	
 	
-	private boolean on = false;
+	public boolean on = true;
 	private Job currentJob = null;
 	private String name;
-
+	//public Printer p = new Printer();
+	
 	
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
 	public void setCurrentJob(Job ajob) {this.currentJob = ajob ;}
 
-	
-	public boolean start() {
-		
-		
-		return this.start();
+	@Override
+	public boolean start(Printer myPrinter){
+		return myPrinter.on;				
 	}
 	
 	
 	public boolean stop() {
 		if (on) { on = false;
-			return true;
+			return false;
 		}
 		System.err.println("Erreur");
 		return false;
@@ -93,4 +92,14 @@ public class Printer {
 	public boolean isPrinting() {
 		return on && currentJob != null;
 	}
+//	@Override
+//	public boolean start(Printer myPrinter) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+
+	//public boolean start(Printer myPrinter) {
+		// TODO Auto-generated method stub
+		//return false;
+	//}
 } // fin de la classe Printer
