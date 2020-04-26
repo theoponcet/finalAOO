@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import main.Document;
 import main.Job;
 import main.Printer;
 
@@ -14,11 +15,14 @@ class PrinterTest {
 	
 	private static Printer printer;
 	private static Job aJob;
+	private static Document document;
 	
 	@BeforeEach
 	void setUp() {
 		printer = new Printer();
 		printer.setName("myPrinter");
+		document = new Document();
+		aJob = new Job(document);
 		
 	}
 	

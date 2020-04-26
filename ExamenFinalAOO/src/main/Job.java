@@ -7,6 +7,7 @@ public class Job {
 	static public int WAITING = 0;
 	static public int PRINTING = 1;
 	static public int COMPLETED = 2;
+	static public int CANCELLED = 3;
 
 	private Printer printer;
 	private Document document;

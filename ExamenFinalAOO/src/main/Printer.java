@@ -14,11 +14,9 @@ public class Printer {
 
 	
 	public boolean start() {
-		if (!on) { on = true;
-			return true;
-		}
-		System.err.println("Erreur");
-		return false;
+		
+		
+		return this.start();
 	}
 	
 	
@@ -28,6 +26,35 @@ public class Printer {
 		}
 		System.err.println("Erreur");
 		return false;
+	}
+	
+	public boolean suspend() {
+		if(isPrinting()) {
+			currentJob.setState(Job.WAITING);
+			return true;
+		}
+		System.err.println("Erreur");
+		return false;
+	}
+	
+	public boolean resume() {
+		if(currentJob.getState()==Job.WAITING) {
+			currentJob.setState(Job.PRINTING);
+			return true;
+		}
+		System.err.println("Erreur");
+		return false;
+	}
+	
+	public boolean cancel() {
+		if(currentJob.getState()==Job.WAITING) {
+			currentJob.setState(Job.CANCELLED);
+			currentJob=null;
+			return true;
+		}
+		System.err.println("Erreur");
+		return false;
+		
 	}
 	
 	public boolean print(Job aJob) {
