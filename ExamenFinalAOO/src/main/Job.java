@@ -1,8 +1,8 @@
 package main;
 
-public class Job {
-	
-	
+import java.util.Observable;
+
+public class Job extends Observable {
 
 	static public int WAITING = 0;
 	static public int PRINTING = 1;
@@ -17,7 +17,11 @@ public class Job {
 	
 	public int getState() { return this.state; }
 	
-	public void setState(int state) { this.state = state; }
+	public void setState(int state) { 
+		this.state = state; 
+		setChanged();
+		notifyObservers();
+	}
 	
 	public Printer getPrinter() { return this.printer; }
 	

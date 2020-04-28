@@ -6,16 +6,16 @@ public class Printer {
 	public boolean on = false;
 	private Job currentJob = null;
 	private String name;
-	private Spooler spooler;
-	//public Printer p = new Printer();
-	
-	
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
-	public void setCurrentJob(Job ajob) {this.currentJob = ajob ;}
+	
+	public void setCurrentJob(Job ajob) {
+		Log jobLog = new Log(ajob);
+		this.currentJob = ajob ;
+		this.currentJob.addObserver(jobLog);
+	}
 
 	public void setSpooler(Spooler spooler) {
-		this.spooler=spooler;
 	}
 	
 	public boolean start(){
@@ -68,7 +68,7 @@ public class Printer {
 // l’imprimante doit être allumée
 // et ne doit pas être en train d’imprimer un document
 		if (isAvailable()){
-			currentJob = aJob;
+			this.setCurrentJob(aJob);;
 			aJob.setPrinter(this);
 			aJob.setState(Job.PRINTING);
 			return true;
