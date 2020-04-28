@@ -3,12 +3,14 @@ package main;
 public class Message {
 	private String id;
 	private MessageType type;
+	private MessagePriority priority;
 	private MessageObject messageObject;
 	
-	public Message(String id, MessageType type, MessageObject messageObject) {
+	public Message(String id, MessageType type, MessagePriority priority, MessageObject messageObject) {
 		super();
 		this.id = id;
 		this.type = type;
+		this.priority = priority;
 		this.messageObject = messageObject;
 	}
 	
@@ -23,6 +25,12 @@ public class Message {
 	}
 	public void setType(MessageType type) {
 		this.type = type;
+	}
+	public MessagePriority getPriority() {
+		return priority;
+	}
+	public void setPriority(MessagePriority priority) {
+		this.priority = priority;
 	}
 	public MessageObject getMessageObject() {
 		return messageObject;
