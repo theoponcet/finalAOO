@@ -33,20 +33,15 @@ class PrinterTest {
 
 	@Test
 	void StartTest() {
-		System.out.println("ca passe");
-		assertTrue(printer.start(printer));
-		System.out.println("ca passe2");
-
-		printer.start(printer);
-		System.out.println("ca passe3");
-		
-		assertTrue(printer.start(printer));
+		assertTrue(printer.start());
+		printer.start();
+		assertFalse(printer.start());
 	}
 	
 	@Test
 	void StopTest() {
 		assertFalse(printer.stop());
-		printer.start(printer);
+		printer.start();
 		assertTrue(printer.stop());
 		printer.stop();
 		assertFalse(printer.stop());
@@ -55,7 +50,7 @@ class PrinterTest {
 	@Test
 	void PrintTest() {
 		assertFalse(printer.print(aJob));
-		printer.start(printer);
+		printer.start();
 		assertTrue(printer.print(aJob));
 		printer.print(aJob);
 		assertFalse(printer.print(aJob));
@@ -66,7 +61,7 @@ class PrinterTest {
 	@Test
 	void PrintingCompletedTest() {
 		assertFalse(printer.printingCompleted());
-		printer.start(printer);
+		printer.start();
 		assertFalse(printer.printingCompleted());
 		printer.print(aJob);
 		assertTrue(printer.printingCompleted());
@@ -77,7 +72,7 @@ class PrinterTest {
 	@Test
 	void isAvailableTest() {
 		assertFalse(printer.isAvailable());
-		printer.start(printer);
+		printer.start();
 		assertTrue(printer.isAvailable());
 		printer.print(aJob);
 		assertFalse(printer.isAvailable());
@@ -89,7 +84,7 @@ class PrinterTest {
 	@Test
 	void isPrintingTest() {
 		assertFalse(printer.isPrinting());
-		printer.start(printer);
+		printer.start();
 		printer.print(aJob);
 		assertTrue(printer.isPrinting());
 		printer.printingCompleted();

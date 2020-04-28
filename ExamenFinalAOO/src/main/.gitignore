@@ -8,3 +8,17 @@
 /False.class
 /PrinterInterface.class
 /OnVal.class
+/SpoolerNearest.class
+/ImprimanteSansFil.class
+/SansFilToPrinter.class
+/Imprimante.class
+/Message.class
+/MessageType.class
+/MessagType.class
+/Mailbox.class
+/Activity.class
+/Actor.class
+/ActoBehavior.class
+/ActorBehavior.class
+/MessageObject.class
+/ActivityHandler.class

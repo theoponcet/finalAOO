@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Collections;
 import java.util.Vector;
 
 public class Spooler {
@@ -8,14 +9,15 @@ public class Spooler {
 
 	
 	synchronized static public Spooler getInstance() {
-		if (instance == null) { instance = new Spooler();
+		if (instance == null) { 
+			instance = new Spooler();
 		}
 		return instance;
 	}
 
-	private Spooler() {}
+	public Spooler() {}
 
-	private Vector<Printer> printers = new Vector<Printer>();
+	protected Vector<Printer> printers = new Vector<Printer>();
 
 	public void join(Printer aPrinter) {
 		printers.add(aPrinter);
@@ -38,20 +40,22 @@ public class Spooler {
 
 	private void authorizedToPrint(User aUser, Job aJob) {
 		if (aUser.getQuota() > aJob.getDocument().getTotalPages()) {
-			findAvailablePrinter(aUser, aJob);
+			findBestPrinter(aUser, aJob);
 		}
 	}
 
-	protected void findAvailablePrinter(User aUser, Job aJob) {
+	protected void findBestPrinter(User aUser, Job aJob) {
 		for (Printer aPrinter : printers) {
 			if (aPrinter.isAvailable()) {
-				schedule(aUser, aJob, aPrinter);
+				schedule(aUser, aJob, aPrinter );
 				return;
 			}
 		}
 	}
-
-	private void schedule(User aUser, Job aJob, Printer aPrinter) {
+		
+	
+	
+	protected void schedule(User aUser, Job aJob, Printer aPrinter) {
 		aPrinter.print(aJob);
 // attendre que la tâche soit terminée
 		if (aJob.getState() == Job.COMPLETED) {

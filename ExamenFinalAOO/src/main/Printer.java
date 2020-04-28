@@ -1,11 +1,12 @@
 package main;
 
-public class Printer implements On{
+public class Printer {
 	
 	
-	public boolean on = true;
+	public boolean on = false;
 	private Job currentJob = null;
 	private String name;
+	private Spooler spooler;
 	//public Printer p = new Printer();
 	
 	
@@ -13,15 +14,22 @@ public class Printer implements On{
 	public void setName(String name) { this.name = name; }
 	public void setCurrentJob(Job ajob) {this.currentJob = ajob ;}
 
-	@Override
-	public boolean start(Printer myPrinter){
-		return myPrinter.on;				
+	public void setSpooler(Spooler spooler) {
+		this.spooler=spooler;
+	}
+	
+	public boolean start(){
+		if (!on) { on = true;
+			 return true;
+		}
+		System.err.println("Erreur");
+		return false;
 	}
 	
 	
 	public boolean stop() {
 		if (on) { on = false;
-			return false;
+			return true;
 		}
 		System.err.println("Erreur");
 		return false;
